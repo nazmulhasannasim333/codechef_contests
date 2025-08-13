@@ -1,23 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-unordered_map<long long, int> memo;
-
-int solve(long long n) {
-    if (memo.count(n)) return memo[n];
-    int res = 1;
-    if (n > 2) res += solve(n - 2);
-    if (n > 1 && n % 2 == 0) res += solve(n / 2);
-    return memo[n] = res;
+long long solve_one(long long N)
+{
+    if (N & 1)
+    {
+        return (N + 1) / 2;
+    }
+    else if ((N % 4) == 0)
+    {
+        return (3 * (N / 4));
+    }
+    else
+    {
+        return (3 * N + 2) / 4;
+    }
 }
 
-int main() {
+int main()
+{
     int T;
-    cin >> T;
-    while (T--) {
+    if (!(cin >> T))
+        return 0;
+    while (T--)
+    {
         long long N;
-        memo.clear();
-        cout << solve(N) << endl;
+        cin >> N;
+        cout << solve_one(N) << endl;
     }
     return 0;
 }
