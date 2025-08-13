@@ -1,35 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int T;
+int main()
+{
+    int T, N;
     cin >> T;
-    while (T--) {
-        int N;
+    while (T--)
+    {
         cin >> N;
-        vector<vector<int>> A(N, vector<int>(N));
-
-        // Step 1: fill with 0..N-1 in a cyclic shift
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                A[i][j] = (i + j) % N;
+        vector<vector<int>> grid(N, vector<int>(N));
+        for (int i = 0; i < N; ++i)
+            for (int j = 0; j < N; ++j)
+                grid[i][j] = (i + j) % N;
+        for (int i = N - 1; i >= 0; --i)
+        {
+            for (int j = 0; j < N; ++j)
+            {
+                cout << grid[i][j] << (j == N - 1 ? '\n' : ' ');
             }
-        }
-
-        // Step 2: put N on the main diagonal
-        for (int i = 0; i < N; i++) {
-            A[i][i] = N;
-        }
-
-        // Output
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                cout << A[i][j] << " ";
-            }
-            cout << "\n";
         }
     }
     return 0;
